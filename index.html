@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MLBB Diamond Store</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: radial-gradient(circle at top, #0f0f1a, #050510);
+      color: white;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+      padding: 15px;
+      background: linear-gradient(90deg, #1a1a3b, #0d0d1f);
+      box-shadow: 0 0 15px #00aaff;
+    }
+
+    header h1 {
+      font-size: 1.5rem;
+      margin: 0;
+      color: #00aaff;
+    }
+
+    .hero {
+      background: url('https://i.imgur.com/YfPp9fQ.jpeg') center/cover no-repeat;
+      height: 300px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      text-shadow: 0 0 10px black;
+    }
+
+    .hero h2 {
+      font-size: 2rem;
+      margin: 0;
+      color: #fff;
+    }
+
+    .hero button {
+      margin-top: 15px;
+      padding: 10px 20px;
+      font-size: 1rem;
+      background-color: #00aaff;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .hero button:hover {
+      background-color: #0088cc;
+    }
+
+    .packs {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 15px;
+      padding: 30px;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 15px;
+      padding: 15px;
+      box-shadow: 0 0 10px rgba(0, 170, 255, 0.2);
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 15px #00aaff;
+    }
+
+    .card img {
+      width: 70px;
+      height: 70px;
+    }
+
+    .card h3 {
+      margin: 10px 0 5px;
+      font-size: 1.2rem;
+    }
+
+    .card p {
+      margin: 5px 0;
+    }
+
+    .card button {
+      background: #00aaff;
+      border: none;
+      color: white;
+      padding: 8px 15px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    footer {
+      padding: 20px;
+      background: #0a0a1a;
+      font-size: 0.9rem;
+      color: #aaa;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>MLBB Diamond Store</h1>
+  </header>
+
+  <div class="hero">
+    <h2>Top-up Mobile Legends Diamonds Instantly</h2>
+    <button>Buy Now</button>
+  </div>
+
+  <section class="packs">
+    <div class="card">
+      <img src="https://i.imgur.com/1nK4uW8.png" alt="Diamonds">
+      <h3>86 Diamonds</h3>
+      <p>₹79</p>
+      <button>Pay via UPI</button>
+    </div>
+    <div class="card">
+      <img src="https://i.imgur.com/1nK4uW8.png" alt="Diamonds">
+      <h3>514 Diamonds</h3>
+      <p>₹399</p>
+      <button>Pay via UPI</button>
+    </div>
+    <div class="card">
+      <img src="https://i.imgur.com/1nK4uW8.png" alt="Diamonds">
+      <h3>1708 Diamonds</h3>
+      <p>₹1199</p>
+      <button>Pay via UPI</button>
+    </div>
+    <div class="card">
+      <img src="https://i.imgur.com/1nK4uW8.png" alt="Diamonds">
+      <h3>Weekly Pass</h3>
+      <p>₹159</p>
+      <button>Pay via UPI</button>
+    </div>
+  </section>
+
+  <footer>
+    <p>© 2025 MLBB Diamond Store | UPI Payments Only</p>
+  </footer>
+</body>
+</html>
