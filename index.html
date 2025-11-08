@@ -1,154 +1,281 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MLBB Diamond Store</title>
-  <style>
-    body {
-      font-family: 'Poppins', sans-serif;
-      background: radial-gradient(circle at top, #0f0f1a, #050510);
-      color: white;
-      text-align: center;
-      margin: 0;
-      padding: 0;
-    }
-
-    header {
-      padding: 15px;
-      background: linear-gradient(90deg, #1a1a3b, #0d0d1f);
-      box-shadow: 0 0 15px #00aaff;
-    }
-
-    header h1 {
-      font-size: 1.5rem;
-      margin: 0;
-      color: #00aaff;
-    }
-
-    .hero {
-      background: url('https://i.imgur.com/YfPp9fQ.jpeg') center/cover no-repeat;
-      height: 300px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      text-shadow: 0 0 10px black;
-    }
-
-    .hero h2 {
-      font-size: 2rem;
-      margin: 0;
-      color: #fff;
-    }
-
-    .hero button {
-      margin-top: 15px;
-      padding: 10px 20px;
-      font-size: 1rem;
-      background-color: #00aaff;
-      color: white;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      transition: 0.3s;
-    }
-
-    .hero button:hover {
-      background-color: #0088cc;
-    }
-
-    .packs {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-      gap: 15px;
-      padding: 30px;
-    }
-
-    .card {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 15px;
-      padding: 15px;
-      box-shadow: 0 0 10px rgba(0, 170, 255, 0.2);
-      transition: 0.3s;
-    }
-
-    .card:hover {
-      transform: scale(1.05);
-      box-shadow: 0 0 15px #00aaff;
-    }
-
-    .card img {
-      width: 70px;
-      height: 70px;
-    }
-
-    .card h3 {
-      margin: 10px 0 5px;
-      font-size: 1.2rem;
-    }
-
-    .card p {
-      margin: 5px 0;
-    }
-
-    .card button {
-      background: #00aaff;
-      border: none;
-      color: white;
-      padding: 8px 15px;
-      border-radius: 8px;
-      cursor: pointer;
-    }
-
-    footer {
-      padding: 20px;
-      background: #0a0a1a;
-      font-size: 0.9rem;
-      color: #aaa;
-    }
-  </style>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>MLBB Diamonds — TopUp (Demo)</title>
+<meta name="description" content="Mobile Legends Diamonds Top-up (Demo) — UPI only" />
+<style>
+  :root{
+    --bg:#071226; --card:#0f1724; --accent:#00b0ff; --muted:#9fb1cc;
+    --glass: rgba(255,255,255,0.03);
+  }
+  *{box-sizing:border-box;font-family:Inter,system-ui,Segoe UI,Roboto,Arial}
+  body{margin:0;background:linear-gradient(180deg,#071226 0%, #02060a 100%);color:#e9f6ff;min-height:100vh}
+  .wrap{max-width:980px;margin:18px auto;padding:16px}
+  header{display:flex;gap:12px;align-items:center;margin-bottom:14px}
+  .logo{width:56px;height:56px;border-radius:12px;background:linear-gradient(135deg,#157bff,#00e0ff);display:flex;align-items:center;justify-content:center;font-weight:800}
+  h1{margin:0;font-size:18px}
+  .hero{display:flex;gap:12px;background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);padding:14px;border-radius:12px;align-items:center}
+  .hero .left{flex:1}
+  .hero img{width:140px;height:96px;object-fit:cover;border-radius:10px}
+  .grid{display:grid;grid-template-columns:1fr 320px;gap:14px;margin-top:14px}
+  @media (max-width:880px){.grid{grid-template-columns:1fr}}
+  .card{background:var(--card);padding:14px;border-radius:12px;box-shadow:0 8px 30px rgba(2,6,23,0.6)}
+  label{display:block;font-size:13px;color:var(--muted);margin-bottom:6px}
+  input[type="text"], select{width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit}
+  .packages{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;margin-top:10px}
+  .pkg{background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00));padding:10px;border-radius:10px;text-align:center;border:1px solid rgba(255,255,255,0.03);cursor:pointer}
+  .pkg.selected{box-shadow:0 8px 24px rgba(0,176,255,0.12);border-color:rgba(0,176,255,0.2)}
+  .btn{display:inline-block;padding:10px 12px;border-radius:10px;background:linear-gradient(90deg,var(--accent),#00e0ff);color:#032033;font-weight:800;border:none;cursor:pointer}
+  .muted{color:var(--muted);font-size:13px}
+  .center{display:flex;gap:8px;align-items:center}
+  .qr{margin-top:12px;text-align:center}
+  .upi-link{word-break:break-all;background:rgba(255,255,255,0.02);padding:8px;border-radius:8px;margin-top:8px;font-size:13px}
+  .orders{margin-top:12px;max-height:220px;overflow:auto;border-radius:8px;padding:8px;background:rgba(255,255,255,0.02)}
+  .order-item{padding:8px;border-bottom:1px dashed rgba(255,255,255,0.03);font-size:13px}
+  footer{margin-top:18px;color:var(--muted);font-size:13px;text-align:center}
+</style>
 </head>
 <body>
+<div class="wrap">
   <header>
-    <h1>MLBB Diamond Store</h1>
+    <div class="logo">ML</div>
+    <div>
+      <h1>MLBB Diamond Top-up (Demo)</h1>
+      <div class="muted">UPI only • Manual verification recommended</div>
+    </div>
   </header>
 
-  <div class="hero">
-    <h2>Top-up Mobile Legends Diamonds Instantly</h2>
-    <button>Buy Now</button>
-  </div>
-
-  <section class="packs">
-    <div class="card">
-      <img src="https://i.imgur.com/1nK4uW8.png" alt="Diamonds">
-      <h3>86 Diamonds</h3>
-      <p>₹79</p>
-      <button>Pay via UPI</button>
+  <section class="hero card">
+    <div class="left">
+      <div style="font-weight:800;font-size:16px">Instant Diamonds — Mobile Legends</div>
+      <div class="muted" style="margin-top:6px">Enter your MLBB ID below, pick a package, and pay with UPI. After payment, send TXN id / screenshot for manual delivery.</div>
+      <div style="margin-top:10px">
+        <label>MLBB Player ID / UID</label>
+        <input id="playerId" type="text" placeholder="e.g. 123456789 (required)" />
+      </div>
     </div>
-    <div class="card">
-      <img src="https://i.imgur.com/1nK4uW8.png" alt="Diamonds">
-      <h3>514 Diamonds</h3>
-      <p>₹399</p>
-      <button>Pay via UPI</button>
-    </div>
-    <div class="card">
-      <img src="https://i.imgur.com/1nK4uW8.png" alt="Diamonds">
-      <h3>1708 Diamonds</h3>
-      <p>₹1199</p>
-      <button>Pay via UPI</button>
-    </div>
-    <div class="card">
-      <img src="https://i.imgur.com/1nK4uW8.png" alt="Diamonds">
-      <h3>Weekly Pass</h3>
-      <p>₹159</p>
-      <button>Pay via UPI</button>
-    </div>
+    <img src="https://i.imgur.com/YfPp9fQ.jpeg" alt="MLBB banner" />
   </section>
 
-  <footer>
-    <p>© 2025 MLBB Diamond Store | UPI Payments Only</p>
-  </footer>
+  <div class="grid">
+    <div>
+      <div class="card">
+        <label>Select package</label>
+        <div class="packages" id="packages"></div>
+
+        <div style="margin-top:12px;display:flex;gap:8px;align-items:center;flex-wrap:wrap">
+          <div>
+            <label>Quantity</label>
+            <select id="qty">
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="5">5</option>
+            </select>
+          </div>
+
+          <div style="flex:1">
+            <label>Order note (optional)</label>
+            <input id="note" type="text" placeholder="e.g. In-game name or brief note" />
+          </div>
+        </div>
+
+        <div style="margin-top:12px;display:flex;gap:8px;align-items:center">
+          <div style="flex:1">
+            <div class="muted">Total</div>
+            <div style="font-weight:800;font-size:18px" id="total">₹0</div>
+            <div class="muted" style="font-size:12px">Payment via UPI (opens UPI app on mobile)</div>
+          </div>
+          <div>
+            <button class="btn" id="payBtn">Pay with UPI</button>
+          </div>
+        </div>
+
+        <div id="after" style="display:none;margin-top:10px">
+          <div class="muted">UPI link (for desktop or copy):</div>
+          <div class="upi-link" id="upiText"></div>
+          <div style="margin-top:8px;display:flex;gap:8px">
+            <button class="btn" id="copyBtn">Copy UPI link</button>
+            <button class="btn" id="openBtn">Open (if on mobile)</button>
+          </div>
+
+          <div class="qr" id="qrArea" style="display:none">
+            <div class="muted">Scan QR with UPI app</div>
+            <img id="qrImg" alt="QR code" style="margin-top:8px;border-radius:8px" />
+          </div>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:12px">
+        <div style="display:flex;justify-content:space-between;align-items:center">
+          <div style="font-weight:800">Recent orders (local)</div>
+          <div class="muted" style="font-size:12px">stored in your browser</div>
+        </div>
+        <div class="orders" id="ordersList"></div>
+      </div>
+    </div>
+
+    <aside>
+      <div class="card">
+        <div style="font-weight:800">How to pay (mobile)</div>
+        <ol style="padding-left:18px" class="muted">
+          <li>Enter your MLBB UID and pick a package.</li>
+          <li>Tap <strong>Pay with UPI</strong>. Your phone will open UPI apps (GPay, PhonePe, etc.).</li>
+          <li>Complete payment and note the transaction id / take screenshot.</li>
+          <li>Send TXN id / screenshot to support for manual delivery.</li>
+        </ol>
+        <hr style="margin:12px 0;border-color:rgba(255,255,255,0.03)" />
+        <div style="font-weight:800">Merchant (demo)</div>
+        <div class="muted">Replace merchant vpa in code before live use.</div>
+      </div>
+
+      <div class="card" style="margin-top:12px">
+        <div style="font-weight:800">Support</div>
+        <div class="muted" style="margin-top:8px">WhatsApp: +91 90000 00000 (demo)</div>
+        <div class="muted" style="margin-top:6px">Email: support@example.com</div>
+      </div>
+    </aside>
+  </div>
+
+  <footer>© 2025 MLBB Diamond Top-up (Demo). Replace UPI ID and add server verification for production.</footer>
+</div>
+
+<script>
+/* ---------- CONFIG: set your merchant UPI ID here ---------- */
+const MERCHANT_UPI_ID = "merchant_upi_id@upi"; // <<< REPLACE with your UPI VPA e.g. shopname@ybl
+const MERCHANT_NAME = "MLBB TopUp";                 // friendly name shown to payer
+/* ----------------------------------------------------------- */
+
+const PACKS = [
+  { id:'p1', label:'Small', diamonds:86, price:79 },
+  { id:'p2', label:'Medium', diamonds:172, price:149 },
+  { id:'p3', label:'Large', diamonds:514, price:399 },
+  { id:'p4', label:'Mega', diamonds:1075, price:799 }
+];
+
+const packagesEl = document.getElementById('packages');
+const totalEl = document.getElementById('total');
+const qtyEl = document.getElementById('qty');
+const payBtn = document.getElementById('payBtn');
+const upiText = document.getElementById('upiText');
+const after = document.getElementById('after');
+const qrArea = document.getElementById('qrArea');
+const qrImg = document.getElementById('qrImg');
+const copyBtn = document.getElementById('copyBtn');
+const openBtn = document.getElementById('openBtn');
+const ordersList = document.getElementById('ordersList');
+
+let selected = PACKS[0];
+
+function renderPackages(){
+  PACKS.forEach(p=>{
+    const div = document.createElement('div');
+    div.className = 'pkg' + (p.id===selected.id ? ' selected':'');
+    div.innerHTML = `<div style="font-weight:800">${p.diamonds} 💎</div><div class="muted">₹${p.price}</div><div style="font-size:12px">${p.label}</div>`;
+    div.onclick = () => { selected = p; updateSelected(); }
+    packagesEl.appendChild(div);
+  });
+}
+function updateSelected(){
+  packagesEl.innerHTML = '';
+  renderPackages();
+  updateTotal();
+}
+function updateTotal(){
+  const q = parseInt(qtyEl.value||1,10);
+  const total = (selected.price * q);
+  totalEl.innerText = `₹${total}`;
+}
+qtyEl.addEventListener('change', updateTotal);
+
+renderPackages();
+updateTotal();
+
+/* generate order id */
+function makeOrderId(){
+  return 'ORD' + Date.now().toString().slice(-8);
+}
+
+/* store order locally */
+function saveOrder(o){
+  const all = JSON.parse(localStorage.getItem('mlbb_orders_v1')||'[]');
+  all.unshift(o);
+  localStorage.setItem('mlbb_orders_v1', JSON.stringify(all.slice(0,30)));
+  renderOrders();
+}
+function renderOrders(){
+  const all = JSON.parse(localStorage.getItem('mlbb_orders_v1')||'[]');
+  ordersList.innerHTML = all.length ? all.map(o => `<div class="order-item"><strong>${o.orderId}</strong> • ${o.packageLabel} • ₹${o.amount} • <span class="muted">${o.playerId||'—'}</span></div>`).join('') : '<div class="muted">No orders yet</div>';
+}
+renderOrders();
+
+/* Build UPI URI */
+function buildUpiUri(params){
+  // pa - payee address, pn - payee name, tn - transaction note, am - amount, cu - currency
+  const {pa,pn,tn,am} = params;
+  // encode values
+  const q = v => encodeURIComponent(v);
+  return `upi://pay?pa=${q(pa)}&pn=${q(pn)}&tn=${q(tn)}&am=${q(am)}&cu=INR`;
+}
+
+/* Pay action */
+payBtn.addEventListener('click', ()=>{
+  const playerId = document.getElementById('playerId').value.trim();
+  if(!playerId){ alert('Enter MLBB Player ID (UID) first'); document.getElementById('playerId').focus(); return; }
+
+  const qty = parseInt(qtyEl.value||1,10);
+  const amount = selected.price * qty;
+  const orderId = makeOrderId();
+  const note = document.getElementById('note').value.trim() || `MLBB:${playerId} ${selected.diamonds}💎 x${qty}`;
+
+  // create demo order object
+  const order = { orderId, packageId:selected.id, packageLabel:`${selected.diamonds}💎`, amount, playerId, qty, note, created:Date.now(), status:'pending' };
+  saveOrder(order);
+
+  // build upi uri
+  const upi = buildUpiUri({ pa: MERCHANT_UPI_ID, pn: MERCHANT_NAME, tn: `${note} | ${orderId}`, am: amount.toFixed(2) });
+
+  // show UPI string + QR (for desktop)
+  upiText.innerText = upi;
+  after.style.display = 'block';
+
+  // QR using Google Chart API (works without server). URL encode the UPI string.
+  try{
+    const qrUrl = 'https://chart.googleapis.com/chart?cht=qr&chs=300x300&chl=' + encodeURIComponent(upi);
+    qrImg.src = qrUrl;
+    // show QR on desktop only
+    qrArea.style.display = navigator.userAgent.toLowerCase().includes('mobile') ? 'none' : 'block';
+  } catch(e){
+    qrArea.style.display = 'none';
+  }
+
+  // open the UPI Uri (on mobile this opens UPI apps)
+  // small delay to allow user to see the UI
+  setTimeout(()=> {
+    // open
+    window.location.href = upi;
+    // For some browsers we also show an "Open" button
+  }, 250);
+});
+
+/* copy to clipboard */
+copyBtn.addEventListener('click', async ()=>{
+  try{
+    await navigator.clipboard.writeText(upiText.innerText);
+    copyBtn.innerText = 'Copied';
+    setTimeout(()=> copyBtn.innerText = 'Copy UPI link',1500);
+  }catch(e){
+    alert('Copy failed. Select and copy manually.');
+  }
+});
+openBtn.addEventListener('click', ()=> {
+  window.location.href = upiText.innerText;
+});
+
+/* initial */
+updateSelected();
+renderOrders();
+</script>
 </body>
-</html>
+  </html>
