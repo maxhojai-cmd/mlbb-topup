@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Buy Diamonds — THE FLIX DIAMOND STORE</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="index.html">THE FLIX DIAMOND STORE</a>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="diamonds.html" class="btn-primary">Buy Diamonds</a>
+        <a href="admin.html" class="admin-link">Admin</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <h2>Pick a Diamond Pack</h2>
+
+    <section class="products-grid" id="productsGrid">
+      <!-- JS will insert the two packs here -->
+    </section>
+
+    <section id="buySection" class="card hidden">
+      <h3 id="selectedTitle">Buy</h3>
+
+      <form id="buyForm" class="form">
+        <div class="form-row">
+          <label>Selected Pack</label>
+          <input id="packName" type="text" readonly />
+        </div>
+
+        <div class="form-row">
+          <label>Price (INR)</label>
+          <input id="packPrice" type="text" readonly />
+        </div>
+
+        <div class="form-row">
+          <label>Game ID (9–12 digits)</label>
+          <input id="gameId" inputmode="numeric" pattern="\d*" placeholder="e.g. 123456789" required />
+          <small class="muted" id="gameHint"></small>
+        </div>
+
+        <div class="form-row">
+          <label>Server ID (4–7 digits)</label>
+          <input id="serverId" inputmode="numeric" pattern="\d*" placeholder="e.g. 1234" required />
+          <small class="muted" id="serverHint"></small>
+        </div>
+
+        <div class="form-actions">
+          <button id="saveBtn" type="submit" class="btn-primary">Save & Go to Checkout</button>
+          <button id="cancelBtn" type="button" class="btn-secondary">Cancel</button>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <footer class="container footer">
+    <p>&copy; <span id="year2"></span> THE FLIX DIAMOND STORE</p>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    document.getElementById('year2').innerText = new Date().getFullYear();
+  </script>
+</body>
+</html>
