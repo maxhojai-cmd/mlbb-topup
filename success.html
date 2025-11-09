@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Payment Status — THE FLIX DIAMOND STORE</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="index.html">THE FLIX DIAMOND STORE</a>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="diamonds.html">Buy Diamonds</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <div id="statusCard" class="card">
+      <!-- Filled by JS -->
+    </div>
+
+    <a href="diamonds.html" class="btn-primary" style="display:inline-block;margin-top:16px">Buy More</a>
+  </main>
+
+  <footer class="container footer">
+    <p>&copy; <span id="year4"></span> THE FLIX DIAMOND STORE</p>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    document.getElementById('year4').innerText = new Date().getFullYear();
+  </script>
+</body>
+</html>
