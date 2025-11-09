@@ -1,45 +1,49 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Coin Shop</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>THE FLIX DIAMOND STORE — Home</title>
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1>💰 Welcome to Coin Shop</h1>
-  <p>Buy game coins for entertainment purposes only. No real cashout.</p>
+  <header class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="index.html">THE FLIX DIAMOND STORE</a>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="diamonds.html" class="btn-primary">Buy Diamonds</a>
+        <a href="admin.html" class="admin-link">Admin</a>
+      </nav>
+    </div>
+  </header>
 
-  <div class="pack">
-    <h3>100 Coins — ₹49</h3>
-    <button onclick="showPayment(49,100)">Buy Now</button>
-  </div>
+  <main class="container hero">
+    <div class="hero-text">
+      <h1>Top-up Mobile Legends Diamonds</h1>
+      <p class="lead">Fast • Simple • Secure — select your pack, enter Game ID & Server ID, and pay via UPI.</p>
+      <p><a href="diamonds.html" class="btn-primary large">Buy Diamonds</a></p>
+    </div>
 
-  <div class="pack">
-    <h3>500 Coins — ₹199</h3>
-    <button onclick="showPayment(199,500)">Buy Now</button>
-  </div>
+    <aside class="hero-aside">
+      <div class="card">
+        <h3>How it works</h3>
+        <ol>
+          <li>Choose a diamond pack.</li>
+          <li>Enter your <strong>Game ID (9–12 digits)</strong> and <strong>Server ID (4–7 digits)</strong>.</li>
+          <li>Open UPI to pay. After paying, come back & click <em>I have paid</em>.</li>
+        </ol>
+        <p class="muted">This demo uses client-side order storage. For automatic verification you will need a backend & payment gateway.</p>
+      </div>
+    </aside>
+  </main>
 
-  <div id="paymentBox" class="hidden">
-  <h2>Step 1: Pay using UPI</h2>
-  <p>Send payment to:</p>
-  <p><b>UPI ID: d2919139@oksbi</b></p>
-  <img src="myQR.png" width="180" alt="UPI QR">
-  <p>Amount: ₹<span id="amount"></span></p>
-
-    <h2>Step 2: Confirm Payment</h2>
-    <form id="confirmForm">
-      <input type="text" id="name" placeholder="Your Name" required><br>
-      <input type="text" id="txn" placeholder="Transaction ID" required><br>
-      <input type="number" id="coins" readonly><br>
-      <button type="submit">Submit</button>
-    </form>
-  </div>
-
-  <footer>
-    <p>⚠️ Coins are for fun only. No refunds or cash withdrawals.</p>
+  <footer class="container footer">
+    <p>&copy; <span id="year"></span> THE FLIX DIAMOND STORE — UPI: <strong>d2919139@oksbi</strong></p>
   </footer>
 
-  <script src="script.js"></script>
+  <script>
+    document.getElementById('year').innerText = new Date().getFullYear();
+  </script>
 </body>
 </html>
