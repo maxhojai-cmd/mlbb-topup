@@ -1,1 +1,19 @@
+function showPayment(amount, coins) {
+  document.getElementById("paymentBox").classList.remove("hidden");
+  document.getElementById("amount").innerText = amount;
+  document.getElementById("coins").value = coins;
+}
 
+document.getElementById("confirmForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const data = {
+    name: document.getElementById("name").value,
+    txn: document.getElementById("txn").value,
+    coins: document.getElementById("coins").value,
+  };
+
+  // For now, just log it or alert it
+  alert(`Thanks ${data.name}! Your payment of ₹${document.getElementById("amount").innerText} for ${data.coins} coins will be verified soon.`);
+
+  // Later we'll send this to a backend
+});
