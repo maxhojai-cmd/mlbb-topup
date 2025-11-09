@@ -1,29 +1,122 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>THE FLIX DIAMOND STORE</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MLBB Diamond Top-Up</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: #0d0d0d;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+    h1 {
+      color: #00e0ff;
+    }
+    .container {
+      background: #1a1a1a;
+      padding: 20px;
+      border-radius: 12px;
+      width: 320px;
+      box-shadow: 0 0 15px rgba(0, 224, 255, 0.4);
+      text-align: center;
+    }
+    img.qr {
+      width: 200px;
+      height: 200px;
+      border-radius: 8px;
+      margin-bottom: 15px;
+    }
+    input {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border: none;
+      border-radius: 8px;
+      outline: none;
+    }
+    button {
+      background: #00e0ff;
+      color: #000;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+    button:hover {
+      background: #00b8d4;
+    }
+    .success {
+      color: #00ff9d;
+      margin-top: 10px;
+    }
+    .error {
+      color: #ff4d4d;
+      margin-top: 10px;
+    }
+  </style>
 </head>
 <body>
-  <header>
-    <h1>THE FLIX DIAMOND STORE</h1>
-    <nav>
-      <a href="index.html">Home</a>
-      <a href="diamonds.html">Buy Diamonds</a>
-      <a href="checkout.html">Checkout</a>
-    </nav>
-  </header>
+  <div class="container">
+    <h1>MLBB Diamond Top-Up</h1>
+    <p>Scan the QR below to pay via UPI, then fill the form.</p>
 
-  <section class="hero">
-    <h2>Top Up Your Mobile Legends Diamonds Instantly</h2>
-    <p>Fast, secure, and trusted — get your MLBB Diamonds in seconds.</p>
-    <a href="diamonds.html" class="btn">Buy Diamonds</a>
-  </section>
+    <!-- 🧾 Replace this URL with your own QR image link -->
+    <img class="qr" src="YOUR_QR_IMAGE_URL" alt="UPI QR Code" />
 
-  <footer>
-    <p>© 2025 THE FLIX DIAMOND STORE | All Rights Reserved</p>
-  </footer>
+    <form id="topupForm">
+      <input type="text" id="mlId" placeholder="Mobile Legends ID" required />
+      <input type="text" id="zoneId" placeholder="Zone ID" required />
+      <input type="text" id="utr" placeholder="UTR / Transaction ID" required />
+      <button type="submit">Submit</button>
+      <p id="msg"></p>
+    </form>
+  </div>
+
+  <script>
+    const form = document.getElementById('topupForm');
+    const msg = document.getElementById('msg');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      msg.textContent = "Submitting...";
+      msg.className = "";
+
+      const data = {
+        mlId: document.getElementById('mlId').value,
+        zoneId: document.getElementById('zoneId').value,
+        utr: document.getElementById('utr').value,
+      };
+
+      try {
+        const res = await fetch('https://YOUR-BACKEND-URL.onrender.com/api/topup', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data),
+        });
+        const result = await res.json();
+
+        if (res.ok) {
+          msg.textContent = "✅ Submitted successfully! We’ll verify soon.";
+          msg.className = "success";
+          form.reset();
+        } else {
+          msg.textContent = result.error || "❌ Something went wrong.";
+          msg.className = "error";
+        }
+      } catch (err) {
+        msg.textContent = "❌ Could not connect to server.";
+        msg.className = "error";
+      }
+    });
+  </script>
 </body>
-</html>
+        </html>
