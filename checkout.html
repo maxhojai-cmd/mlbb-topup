@@ -26,8 +26,19 @@
     </div>
 
     <div id="payActions" style="margin-top:16px;">
-      <button id="openUpiBtn" class="btn-primary">Open UPI App to Pay</button>
-      <button id="paidBtn" class="btn-secondary">I have paid</button>
+  <h3>Submit Your Details & Pay</h3>
+
+  <form action="https://script.google.com/macros/s/AKfycbyPDWhpRI_gmVIDCl8FL32IPmWr-5uTTk0m0SWsdUZVAYMfLqdPcUT5AMkWHkmfgFta/exec" method="get" target="_blank">
+    Name: <input type="text" name="name" required><br><br>
+    Amount: <input type="number" name="amount" required><br><br>
+    <button type="submit" class="btn-primary">Submit & Pay</button>
+  </form>
+
+  <br>
+
+  <a href="upi://pay?pa=d2919139@oksbi&pn=Dron&cu=INR" target="_blank">
+    <button class="btn-primary">Open UPI App to Pay</button>
+  </a>
     </div>
 
     <p class="muted" style="margin-top:12px">
