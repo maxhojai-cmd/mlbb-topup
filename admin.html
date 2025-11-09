@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Admin — THE FLIX DIAMOND STORE</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="index.html">THE FLIX DIAMOND STORE</a>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="diamonds.html">Buy</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container admin-page">
+    <h1>Admin — Orders</h1>
+
+    <div id="loginBox" class="card">
+      <p><strong>Client-side Admin</strong> — enter password to view orders.</p>
+      <input id="adminPass" type="password" placeholder="Admin password" />
+      <div style="margin-top:8px">
+        <button id="adminLoginBtn" class="btn-primary">Login</button>
+      </div>
+      <p class="muted" style="margin-top:8px">Default password is <code>admin123</code>. Replace or protect on a real server.</p>
+    </div>
+
+    <div id="ordersPanel" class="hidden">
+      <button id="logoutBtn" class="btn-secondary">Logout</button>
+      <div id="ordersList" style="margin-top:12px"></div>
+    </div>
+  </main>
+
+  <footer class="container footer">
+    <p>&copy; <span id="year5"></span> THE FLIX DIAMOND STORE</p>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    document.getElementById('year5').innerText = new Date().getFullYear();
+  </script>
+</body>
+</html>
